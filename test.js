@@ -306,10 +306,10 @@ window.onload = function () {//encases all code, makes sure all JS is loaded bef
     var playerChoices = ["opener"];//array containing variables
 
 
-    var x = document.getElementById("beeg");//start button
+    var x = document.getElementById("begin");//start button
     var restart = document.getElementById("restart");//restart button
-    var playArea = document.getElementById("playArea");//refers to play area
-    var buttonArea = document.getElementById("buttonArea");//refers to button area
+    var playArea = document.getElementById("playPlace");//refers to play area
+    var buttonArea = document.getElementById("buttons");//refers to button area
 
     function createButton(btnText, choice) {
         var button = document.createElement("button"); //creates button
@@ -340,15 +340,15 @@ window.onload = function () {//encases all code, makes sure all JS is loaded bef
 
     }
 
-    restart.addEventListener("click", function () {
-        location.reload();//reloads page on click, resetting game
-    });
+    // restart.addEventListener("click", function () {
+    //     location.reload();//reloads page on click, resetting game
+    // });
 
-    restart.style.display = 'none';//hides restart button
+    // restart.style.display = 'none';//hides restart button
 
-    x.addEventListener("click", function () {//on start button click
-        createStory(story.opener.text);//run createStory
-        restart.style.display = '';//unhide restart button
-    });
+    // x.addEventListener("click", function () {//on start button click
+    //     createStory(story.opener.text);//run createStory
+    //     restart.style.display = '';//unhide restart button
+    // });
 
 }//end of window.onload, do NOT put any JS after this    

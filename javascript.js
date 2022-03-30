@@ -1,11 +1,21 @@
-var playerChoices = ["opener"];//array containing variables
+window.onload = function () {
+    var story = {
+        prolog: {
+            text: "hello world!",
+            options: [["continue", "Continue"]]
+        },
+        continue: {
+            text: "world hello!"
+        }
+    };
 
+    var playerChoices = ["prolog"];
 
-var x = document.getElementById("begin");//start button
-var buttons = document.getElementById("mcDonaldsPlayPlace");//refers to button area
+    var start = document.getElementById("begin");
+    var textArea = document.getElementById("playPlace");
+    var buttonArea = document.getElementById("buttons");
 
-var story = {
-    prolog: {
-        text: "hello world!"
+    function writeStory(text){
+        textArea.innerHTML = text;
     }
 }
