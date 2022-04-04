@@ -346,9 +346,9 @@ window.onload = function () {//encases all code, makes sure all JS is loaded bef
 
     // restart.style.display = 'none';//hides restart button
 
-    // x.addEventListener("click", function () {//on start button click
-    //     createStory(story.opener.text);//run createStory
-    //     restart.style.display = '';//unhide restart button
-    // });
+    x.addEventListener("click", function () {//on start button click
+        createStory(story.opener.text);//run createStory
+        restart.style.display = '';//unhide restart button
+    });
 
 }//end of window.onload, do NOT put any JS after this    

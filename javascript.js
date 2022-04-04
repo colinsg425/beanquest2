@@ -5,7 +5,8 @@ window.onload = function () {
             options: [["continue", "Continue"]]
         },
         continue: {
-            text: "world hello!"
+            text: "world hello!",
+            options: [["continue", "Continue"]]
         }
     };
 
@@ -18,4 +19,8 @@ window.onload = function () {
     function writeStory(text){
         textArea.innerHTML = text;
     }
+
+    start.addEventListener("click", function (){
+        writeStory(story.prolog.text);
+    });
 }
