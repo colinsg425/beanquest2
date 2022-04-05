@@ -303,52 +303,40 @@ window.onload = function () {//encases all code, makes sure all JS is loaded bef
         }
     };
 
-    var playerChoices = ["opener"];//array containing variables
+    var playerChoices = ["prolog"];
 
+    var startBtn = document.getElementById("begin");
+    var textArea = document.getElementById("playPlace");
+    var optionArea = document.getElementById("buttons");
 
-    var x = document.getElementById("beeg");//start button
-    var restart = document.getElementById("restart");//restart button
-    var playArea = document.getElementById("playArea");//refers to play area
-    var buttonArea = document.getElementById("buttonArea");//refers to button area
+    function displayStory(text){
+        textArea.innerHTML = text;
+    }
 
-    function createButton(btnText, choice) {
-        var button = document.createElement("button"); //creates button
-        button.innerHTML = btnText;//changes button text according to "options" in array
-        buttonArea.appendChild(button);//adds button that has changed name
+    function createButton(btnText, choice){
+        var btn = document.createElement("button");
+        btn.innerHTML = btnText;
+        optionArea.appendChild(button);
 
-        button.addEventListener("click", function () {//when button that is generated is clicked, add choice to playerChoices and run createStory
+        btn.addEventListener("click", function(){
             playerChoices.push(choice);
-            createStory();
-            window.scrollTo({ top: 0, behavior: 'smooth' });//shamelessly stolen from stackOverflow, scrolls to top smoothly on button press
+            writeStory();
         });
     }
 
-    function addStory(text) {//changes playArea text to choice
-        playArea.innerHTML = text;
+    function writeStory(text){
+        let pageUpdated = playerChoices[playerChoices.length - 1];
+        textArea.innerHTML = "";
+        optionArea.innerHTML = "";
+        for(let idea of playerChoices){
+            displayStory(story[idea].text)
+        }
+        for(let idea of story[pageUpdated].options){
+            createButton(idea[1], idea[0]);
+        }
     }
 
-    function createStory(text) {
-        let pageNow = playerChoices[playerChoices.length - 1];
-        playArea.innerHTML = "";//empties play area
-        buttonArea.innerHTML = "";//empties button area
-        for (let idea of playerChoices) {//creates variable idea and uses with array playerChoices
-            addStory(story[idea].text)//based on button clicked, run addStory with text
-        }
-        for (let idea of story[pageNow].options) {//creates variable idea and used with story.options
-            createButton(idea[1], idea[0]);//creates buttons using options text
-        }
-
-    }
-
-    restart.addEventListener("click", function () {
-        location.reload();//reloads page on click, resetting game
+    startBtn.addEventListener("click", function (){
+        displayStory(story.prolog.text);
     });
-
-    restart.style.display = 'none';//hides restart button
-
-    x.addEventListener("click", function () {//on start button click
-        createStory(story.opener.text);//run createStory
-        restart.style.display = '';//unhide restart button
-    });
-
-}//end of window.onload, do NOT put any JS after this    
+}
