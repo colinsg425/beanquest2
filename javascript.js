@@ -5,7 +5,7 @@ var start = document.getElementById("begin");
 var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
 var beanCounter = document.getElementById("beanCounter");
-var inventory = [];
+var inventory = {items: [], beans: 0};
 
 num = 1;
 
@@ -47,10 +47,18 @@ var story = {
     },
 
     check: {
-        text: "You reach back down the pipe and pull out a can of Bush'sⓇ Baked Beans. (+1 beans)", addBean(){ beanCounter.innerHTML = "total beans: "}, "With the pipes now clear, you pack up, exit out the front door, and head into town.",
-        options: [["town", "Go back to Town"]]
+        text: "You reach back down the pipe and pull out a can of Bush'sⓇ Baked Beans. (+1 beans) With the pipes now clear, you pack up, exit out the front door, and head into town.",
+        options: [["town", "Go back to Town"]],
     },
 };
+
+function displayBean(){
+    beanCounter.innerHTML = (inventory.beans + 1);
+}
+
+if(story.check.text === true){
+    displayBean();
+}
 
 function createButton(btnText, choice) {
     var button = document.createElement("button");
