@@ -5,7 +5,7 @@ var start = document.getElementById("begin");
 var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
 var beanCounter = document.getElementById("beanCounter");
-var inventory = {items: [], beans: 0};
+var inventory = { items: [], beans: 0};
 
 num = 1;
 
@@ -48,13 +48,40 @@ var story = {
 
     check: {
         text: "You reach back down the pipe and pull out a can of Bush'sⓇ Baked Beans. (+1 beans) With the pipes now clear, you pack up, exit out the front door, and head into town.",
-        options: [["prolog", "Go back to Town"]],
-        trigger: function displayBean(){console.log("worked")},
+        options: [["town", "Go back to Town"], [true, "empty"]],
     },
-};
 
-// function displayBean(){
-//     beanCounter.innerHTML = (inventory.beans + 2);
+    town: {
+        text: "As you emerge from the train station into the bustling streets of Augusta, Wisconsin, where the abandoned Chestnut Hill Bush’sⓇ Baked Beans factory overlooks the population. So many opportunities, what will you do today?",
+        options: [["lake", "Go to the Lake"], ["home", "Go Home"], ["store", "Go to Store"], ["people", "Talk to People"]], 
+    },
+
+    //lake ending
+    lake: {
+        text: "You decide to take the rest of the day off and go to the lake…\n You spend the day fishing…\n It is peaceful…",
+    },
+
+    //home
+    home:{
+        text: "You make your way back to your house on the outskirts of town. “I’m home!”, you exclaim as you walk in the door, but your words fall on deaf ears as you are ignored by the other residents.",
+        options: [["look", "Look out Window"], ["pantry", "Raid pantry"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"]],
+    },
+
+    look:{
+        text: "You walk over to a nearby window and look out at your yard. Among the dead shrubbery and flowers you see a platypus with the number 17 scarred into its forehead. You stare at each other for some time…his black, heartless gaze eats away at your soul…your humanity. Eventually you break your gaze leaving you to shiver. By the time you look back you notice that he is missing. “How queer…” you think.",
+        options: [["pantry", "Raid Pantry"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"]],
+    },
+
+    pantry:{
+      text: "You walk into your pantry in hopes of finding something to fill the ever growing void inside…you find a can of Bush’sⓇ Baked Beans.",
+      options: [["look", "Look out Window"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"], [true, "empty"]],
+    },
+
+    
+    
+};
+// function displayBean() {
+//     beanCounter.innerHTML = (inventory.beans + 1);
 //     console.log("worked");
 // }
 
@@ -67,6 +94,10 @@ function createButton(btnText, choice) {
         playerChoices.push(choice);
         createStory();
     });
+
+    if(btnText == "empty") {
+        button.style.display = "none";
+    }
 }
 
 function addStory(text) {
@@ -82,6 +113,13 @@ function createStory() {
     }
     for (let choices of story[pageUpdate].options) {
         createButton(choices[1], choices[0]);
+        if(choices[0] == true) {
+            beanCounter.innerHTML = (inventory.beans += 1);
+        }
+        if(choices[0] == "pantry"){
+            console.log("yuayuieiuhsurhuidshfusdfe");
+        }
+
     }
 }
 
