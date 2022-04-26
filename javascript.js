@@ -5,7 +5,7 @@ var start = document.getElementById("begin");
 var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
 var beanCounter = document.getElementById("beanCounter");
-var inventory = { items: [], beans: 0};
+var inventory = { items: [], beans: 0 };
 
 num = 1;
 
@@ -53,7 +53,7 @@ var story = {
 
     town: {
         text: "As you emerge from the train station into the bustling streets of Augusta, Wisconsin, where the abandoned Chestnut Hill Bush’sⓇ Baked Beans factory overlooks the population. So many opportunities, what will you do today?",
-        options: [["lake", "Go to the Lake"], ["home", "Go Home"], ["store", "Go to Store"], ["people", "Talk to People"]], 
+        options: [["lake", "Go to the Lake"], ["home", "Go Home"], ["shop", "Go to Store"], ["people", "Talk to People"]],
     },
 
     //lake ending
@@ -62,28 +62,74 @@ var story = {
     },
 
     //home
-    home:{
+    home: {
         text: "You make your way back to your house on the outskirts of town. “I’m home!”, you exclaim as you walk in the door, but your words fall on deaf ears as you are ignored by the other residents.",
-        options: [["look", "Look out Window"], ["pantry", "Raid pantry"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"]],
+        options: [["look", "Look out Window"], ["pantry", "Raid pantry"], ["brother", "Talk to Your Brother"], ["dweller", "Talk to Basement Dweller"], ["town", "Go Back to Town"]],
     },
 
-    look:{
+    look: {
         text: "You walk over to a nearby window and look out at your yard. Among the dead shrubbery and flowers you see a platypus with the number 17 scarred into its forehead. You stare at each other for some time…his black, heartless gaze eats away at your soul…your humanity. Eventually you break your gaze leaving you to shiver. By the time you look back you notice that he is missing. “How queer…” you think.",
-        options: [["pantry", "Raid Pantry"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"]],
+        options: [["pantry", "Raid Pantry"], ["brother", "Talk to Your Brother"], ["dweller", "Talk to Basement Dweller"], ["town", "Go Back to Town"]],
     },
 
-    pantry:{
-      text: "You walk into your pantry in hopes of finding something to fill the ever growing void inside…you find a can of Bush’sⓇ Baked Beans.",
-      options: [["look", "Look out Window"], ["brother", "Talk to Your Brother"], ["Dweller", "Talk to Basement Dweller"], [true, "empty"]],
+    pantry: {
+        text: "You walk into your pantry in hopes of finding something to fill the ever growing void inside…you find a can of Bush’sⓇ Baked Beans.",
+        options: [["look", "Look out Window"], ["brother", "Talk to Your Brother"], ["dweller", "Talk to Basement Dweller"], ["pantryBean", "empty"], ["town", "Go Back to Town"]],
     },
 
-    
-    
+    brother: {
+        text: `“Hello Lui” you say to your brother, Lui G.
+        He slowly turns around to acknowledge you, “I’m going to the liquor store in a little bit, would you like anything?”
+        “No, I’m ok”
+        He turns back around, ending the conversation…`,
+        options: [["look", "Look out Window"], ["pantry", "Raid pantry"], ["dweller", "Talk to Basement Dweller"], ["town", "Go Back to Town"]],
+    },
+
+    dweller: {
+        text: `You head downstairs to check on your other roommate.
+        “Hey, Benjamin. How’s the business going?” you address your roommate, Benjamin Yangbert.
+        “Crypto is currently down in value and the bump stocks aren’t selling as well as they were.”
+        “I’m sorry to hear that.”
+        Before going back upstairs, you question why you still let him live with you and your brother. He was a friend in school and having him move in was supposed to be a way to make paying rent cheaper, but all his 3D printers and crypto mining rigs are raising electricity costs too much to make it worthwhile. Maybe it’s time to kick him out.`,
+        options: [["look", "Look out Window"], ["pantry", "Raid pantry"], ["brother", "Talk to Your Brother"], ["town", "Go Back to Town"]],
+    },
+
+    //shop
+    shop: {
+        text: `You walk into the general store. Entering the store you see an American flag spray painted over a Canadian flag.
+        “Heelloooo boody” the cashier states, you can clearly tell that he is Canadian, trying desperately to mask his accent.`,
+        options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["beans", "Purcahse Beans"], ["sell", "Sell"], ["town", "Go Back to Town"]],
+    },
+
+    pie: {
+        text: `You see a blueberry pie on the shelf…
+        “Benjamin would enjoy this” You think to yourself picking it up off the shelf and bringing it to the counter.
+        “Alrighty, bud, one blueberry pie coming up!”`,
+        options: [["sell", "Sell"], ["town", "Go Back to Town"]],
+    },
+
+    magazine: {
+        text: `You open up the magazine, learning from it, you are entranced by what it teaches, learning of fighting and combat, all its variations, applications, and styles. Quickly you rush it over to the counter…
+        “I need this!” You shout, slamming the magazine on the counter.
+        “Okay buddy, one Detroit Urban Survival Training Magazine, by Dale Brown, coming right up!”
+        (You now know of violence)`,
+        options: [["sell", "Sell"], ["town", "Go Back to Town"]],
+    },
+
+    beans: {
+        text: `“Alright, bud, one can of Bush’sⓇ Baked Beans, coming right up! These are a hot commodity nowadays, don’tcha know.”`,
+        options: [["sell", "Sell"], ["town", "Go Back to Town"], ["storeBean", "empty"]],
+    },
+
+    sell: {
+        text: `“Sorry, but this ain’t that kinda store, bud.” He says, sounding as offended as he can.`,
+        options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["beans", "Purcahse Beans"], ["town", "Go Back to Town"]],
+    },
+
+    leave: {
+
+    }
 };
-// function displayBean() {
-//     beanCounter.innerHTML = (inventory.beans + 1);
-//     console.log("worked");
-// }
 
 function createButton(btnText, choice) {
     var button = document.createElement("button");
@@ -95,7 +141,7 @@ function createButton(btnText, choice) {
         createStory();
     });
 
-    if(btnText == "empty") {
+    if (btnText == "empty") {
         button.style.display = "none";
     }
 }
@@ -113,15 +159,22 @@ function createStory() {
     }
     for (let choices of story[pageUpdate].options) {
         createButton(choices[1], choices[0]);
-        if(choices[0] == true) {
+        if (choices[0] == true) {
             beanCounter.innerHTML = (inventory.beans += 1);
         }
-        if(choices[0] == "pantry"){
-            console.log("yuayuieiuhsurhuidshfusdfe");
+        if (choices[0] == "pantryBean") {
+            pantryBean = 1;
+            beanCounter.innerHTML = (inventory.beans + pantryBean);
+            console.log("pantry bean got");
         }
-
+        if (choices[0] == "storeBean") {
+            storeBean = 1;
+            beanCounter.innerHTML = (inventory.beans + storeBean);
+            console.log("store bean got");
+        }
     }
 }
+
 
 start.addEventListener("click", function () {
     createStory(story.prolog.text);
