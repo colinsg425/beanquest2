@@ -5,6 +5,7 @@ var start = document.getElementById("begin");
 var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
 var beanCounter = document.getElementById("beanCounter");
+var graphicInventory = document.getElementById("inventory")
 var inventory = { items: [], beans: 0 };
 
 num = 1;
@@ -118,7 +119,7 @@ var story = {
 
     beans: {
         text: `“Alright, bud, one can of Bush’sⓇ Baked Beans, coming right up! These are a hot commodity nowadays, don’tcha know.”`,
-        options: [["sell", "Sell"], ["town", "Go Back to Town"], ["storeBean", "empty"]],
+        options: [["sell", "Sell"], ["town", "Go Back to Town"], [true, "empty"]],      
     },
 
     sell: {
@@ -126,9 +127,78 @@ var story = {
         options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["beans", "Purcahse Beans"], ["town", "Go Back to Town"]],
     },
 
-    leave: {
+    //talk to citizens
+    people: {
+        text: `As you make your way through the town you find many familiar faces walking every which way. Who do you want to talk to?`,
+        options: [["eren", "Eren Krueger"], ["joe", "Joe Rogan"], ["psy", "PSY"], ["kanye", "Kanye West"], ["hogan", "Hulk Hogan (homeless)"], ["mrbean", "Mr. Bean"]],
+    },
+        //Eren Krueger
+        eren: {
+            text: `As you walk down the street you come across a very rugged and unkempt looking man sitting on a bench, you notice a void space where his leg should be, he is unaffected by your presence.`,
+            options: [["hello", `"Erm...hello?`], ["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
+        },
 
-    }
+        hello: {
+            text: `“Hm? Oh…Why don't you make yourself useful and move along? I've got mail to deliver."`,
+            options: [["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
+        },
+
+        helium: {
+            text: `“Oh my god is that true?"`,
+            options: [["hello", `"Erm...hello?`], ["people", "Leave"]],
+        },
+
+        //Joe Rogan
+        joe: {
+            text: `You approach Joe Rogan.
+            “*cough cough* Hey kid, I didn’t see you there.”
+            You see a tall figure to his right.
+            “Who’s that?” you ask.
+            “Oh, he’s a friend of mine, Jar-Jar from Jamaica.”
+            Jar-Jar approaches you, “*Koff koff* Hey-sa, how-sa it going mon?”
+            “Oh wow! Jar-Jar from Jamaica, born in Wyoming, moved to California circa 1849! I’m a huge fan.”- you exclaim shaking his hand`,
+            options: [["autograph", `"Can I have an autograph?"`], ["people", "Leave"]],
+        },
+
+        autograph: {
+            text: `	You hand a can of Bush’sⓇ Baked Beans to him.
+            “Thank you-sa!” - he exclaims, handing you the autograph.
+            (-1 beans, +1 autograph)`,
+            options: [["people", "Leave"], ["autographExchange", "empty"]],
+        },
+
+        //PSY
+        psy: {
+            text: `You approach PSY and he begins to notice you approaching him.
+            “Oh my brother in heaven,” you exclaim, “it be PSY the man who led the trojan horse of K-pop to the western world”
+            
+            “그래 나야” he states
+            
+            “Huh?” you question
+            
+            “Yes it is me” PSY countries
+            
+            “Oh you speak english?”
+            
+            “No,” he countries “I can only say that and this explanation I am giving you now.”
+            
+            “Oh brother” you exclaim
+            
+            Changing topics amidst the awkward silence following, PSY turns to you and says
+            
+            “Kanye 와 함께 공연할 기회가 있었으면 좋겠어요."
+            (I wish I had a chance to perform with Kanye)
+            
+            “Hmm, I see” you “state”
+            
+            I get the feeling that he wants to do something with Kanye`,
+            options: [["people", "Leave"]],
+        },
+
+        kanye: {
+            text: `You see Kanye West standing on the corner…`,
+            options: [["morning", `"Aye, good morning, Kanye"`], ["album", `"When's the Next Album"`], [""]]
+        }
 };
 
 function createButton(btnText, choice) {
@@ -167,14 +237,17 @@ function createStory() {
             beanCounter.innerHTML = (inventory.beans + pantryBean);
             console.log("pantry bean got");
         }
-        if (choices[0] == "storeBean") {
-            storeBean = 1;
-            beanCounter.innerHTML = (inventory.beans + storeBean);
-            console.log("store bean got");
+        if (choices[0] == "autographExchange"){
+            beanCounter.innerHTML = (inventory.beans - 1);
+            inventory.items.push("jjAutograph");
+            checkInventory();
         }
     }
 }
 
+function checkInventory(){
+    graphicInventory.innerHTML = (inventory.items);
+}
 
 start.addEventListener("click", function () {
     createStory(story.prolog.text);
