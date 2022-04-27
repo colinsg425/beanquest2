@@ -99,7 +99,7 @@ var story = {
     shop: {
         text: `You walk into the general store. Entering the store you see an American flag spray painted over a Canadian flag.
         “Heelloooo boody” the cashier states, you can clearly tell that he is Canadian, trying desperately to mask his accent.`,
-        options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["beans", "Purcahse Beans"], ["sell", "Sell"], ["town", "Go Back to Town"]],
+        options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["purcahseBeans", "Purcahse Beans"], ["sell", "Sell"], ["town", "Go Back to Town"]],
     },
 
     pie: {
@@ -117,9 +117,9 @@ var story = {
         options: [["sell", "Sell"], ["town", "Go Back to Town"]],
     },
 
-    beans: {
+    purcahseBeans: {
         text: `“Alright, bud, one can of Bush’sⓇ Baked Beans, coming right up! These are a hot commodity nowadays, don’tcha know.”`,
-        options: [["sell", "Sell"], ["town", "Go Back to Town"], [true, "empty"]],      
+        options: [["sell", "Sell"], ["town", "Go Back to Town"], ["storeBean", "empty"]],
     },
 
     sell: {
@@ -132,44 +132,44 @@ var story = {
         text: `As you make your way through the town you find many familiar faces walking every which way. Who do you want to talk to?`,
         options: [["eren", "Eren Krueger"], ["joe", "Joe Rogan"], ["psy", "PSY"], ["kanye", "Kanye West"], ["hogan", "Hulk Hogan (homeless)"], ["mrbean", "Mr. Bean"]],
     },
-        //Eren Krueger
-        eren: {
-            text: `As you walk down the street you come across a very rugged and unkempt looking man sitting on a bench, you notice a void space where his leg should be, he is unaffected by your presence.`,
-            options: [["hello", `"Erm...hello?`], ["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
-        },
+    //Eren Krueger
+    eren: {
+        text: `As you walk down the street you come across a very rugged and unkempt looking man sitting on a bench, you notice a void space where his leg should be, he is unaffected by your presence.`,
+        options: [["hello", `"Erm...hello?`], ["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
+    },
 
-        hello: {
-            text: `“Hm? Oh…Why don't you make yourself useful and move along? I've got mail to deliver."`,
-            options: [["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
-        },
+    hello: {
+        text: `“Hm? Oh…Why don't you make yourself useful and move along? I've got mail to deliver."`,
+        options: [["helium", `“Did you know that all of Earth's helium will be completely depleted within 10-20 years?”`], ["people", "Leave"]],
+    },
 
-        helium: {
-            text: `“Oh my god is that true?"`,
-            options: [["hello", `"Erm...hello?`], ["people", "Leave"]],
-        },
+    helium: {
+        text: `“Oh my god is that true?"`,
+        options: [["hello", `"Erm...hello?`], ["people", "Leave"]],
+    },
 
-        //Joe Rogan
-        joe: {
-            text: `You approach Joe Rogan.
+    //Joe Rogan
+    joe: {
+        text: `You approach Joe Rogan.
             “*cough cough* Hey kid, I didn’t see you there.”
             You see a tall figure to his right.
             “Who’s that?” you ask.
             “Oh, he’s a friend of mine, Jar-Jar from Jamaica.”
             Jar-Jar approaches you, “*Koff koff* Hey-sa, how-sa it going mon?”
             “Oh wow! Jar-Jar from Jamaica, born in Wyoming, moved to California circa 1849! I’m a huge fan.”- you exclaim shaking his hand`,
-            options: [["autograph", `"Can I have an autograph?"`], ["people", "Leave"]],
-        },
+        options: [["autograph", `"Can I have an autograph?"`], ["people", "Leave"]],
+    },
 
-        autograph: {
-            text: `	You hand a can of Bush’sⓇ Baked Beans to him.
+    autograph: {
+        text: `	You hand a can of Bush’sⓇ Baked Beans to him.
             “Thank you-sa!” - he exclaims, handing you the autograph.
             (-1 beans, +1 autograph)`,
-            options: [["people", "Leave"], ["autographExchange", "empty"]],
-        },
+        options: [["people", "Leave"], ["autographExchange", "empty"]],
+    },
 
-        //PSY
-        psy: {
-            text: `You approach PSY and he begins to notice you approaching him.
+    //PSY
+    psy: {
+        text: `You approach PSY and he begins to notice you approaching him.
             “Oh my brother in heaven,” you exclaim, “it be PSY the man who led the trojan horse of K-pop to the western world”
             
             “그래 나야” he states
@@ -192,13 +192,75 @@ var story = {
             “Hmm, I see” you “state”
             
             I get the feeling that he wants to do something with Kanye`,
-            options: [["people", "Leave"]],
-        },
+        options: [["people", "Leave"]],
+    },
 
-        kanye: {
-            text: `You see Kanye West standing on the corner…`,
-            options: [["morning", `"Aye, good morning, Kanye"`], ["album", `"When's the Next Album"`], [""]]
-        }
+    //Kanye West
+    kanye: {
+        text: `You see Kanye West standing on the corner…`,
+        options: [["morning", `"Aye, good morning, Kanye"`], ["album", `"When's the Next Album"`], ["fell", `"Man, you fell off!"`], ["people", "Leave"]],
+    },
+
+    morning: {
+        text: `"Good morning." Kanye exclaims, dropping a classic Kanye coin™.
+        “Oooh! A shiney!” You exclaim. 
+        As you look up from the quarter, Kanye is gone.
+        You turn around to see Kanye hiding behind a street pole.
+        You walk up to him, “What are you doing?”
+        “Uhhh, I’m gonna need that coin back, yo.”
+        You give him back the coin.`,
+        options: [["album", `"When's the Next Album"`], ["fell", `"Man, you fell off!"`], ["people", "Leave"]],
+    },
+
+    fell: {
+        text: `"Jokes on you, I'm doing a show at Mr. Bean's Bean-tacular Bean Factory Bonanza! (ft. Nickelback)"`,
+        options: [["showPsy", `"Have you Heard of PSY?"`], ["people", "Leave"]],
+    },
+
+    showPsy: {
+        test: `“No.”
+        "Listen to this..."
+        You pull out your phone and show Kanye the video for “Gangnam Style”...
+        "Man, forget Nickelback, I'm getting PSY! Take these beans as thanks!" He exclaims.
+        “Thank you”
+        “No problem, I got beans to spare.” He walks away, towards the bean factory.`,
+        options: [[true, "empty"], ["people", "Leave"]],
+    },
+
+    album: {
+        text: `He looks at you in disgust…
+        "Nuh-uh, you can't tell me nothin’."`,
+        options: [["morning", `"Aye, good morning, Kanye"`], ["fell", `"Man, you fell off!"`], ["people", "Leave"]],
+    },
+
+    // homeless hulk hogan
+
+    hogan: {
+        text: `You approach a homeless man that looks suspiciously like Hulk Hogan…
+        “Hey Brotherrrr!” he exclaims
+        "Oh Brother... can't you see i'm walkin here" you reply
+        "Listen brother, can you spare a little something?"`,
+        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`], ["bag", "Give brown bag"]],
+    },
+
+    getLost: {
+        text: `You walk past him`,
+        options: [["giveBean", `Give beans`], ["bag", "Give brown bag"]],
+    },
+
+    giveBean: {
+        text: `You offer him a can of Bush’sⓇ Baked Beans…
+        “Thanks brother!” he exclaims before slurping down the whole can in seconds.
+    “As a token of gratitude, I want you to have this” he grabs onto his now bean stained mustache and glasses, rips them off his face, and places them in your hands.
+        (-1 beans, +1 bean stained mustache, +1 sunglasses)`,
+        options: [["getLost", `Get lost, meat bag`], ["bag", "Give brown bag"], ["hoganBeanEncounter", "empty"]],
+    },
+
+    bag: {
+        text: `He looks inside the bag, and a sinister grin comes across his face, “I think I know what to do with this, brother…” he exclaims as he runs down the street excitedly`,
+        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
+    },
+
 };
 
 function createButton(btnText, choice) {
@@ -229,26 +291,53 @@ function createStory() {
     }
     for (let choices of story[pageUpdate].options) {
         createButton(choices[1], choices[0]);
+        //Beans
         if (choices[0] == true) {
             beanCounter.innerHTML = (inventory.beans += 1);
         }
         if (choices[0] == "pantryBean") {
             pantryBean = 1;
-            beanCounter.innerHTML = (inventory.beans + pantryBean);
+            inventory.beans = (inventory.beans + pantryBean);
             console.log("pantry bean got");
+            updateBean();
         }
-        if (choices[0] == "autographExchange"){
-            beanCounter.innerHTML = (inventory.beans - 1);
-            inventory.items.push("jjAutograph");
+        if (choices[0] == "storeBean") {
+            storeBean = 1;
+            inventory.beans = (inventory.beans + storeBean);
+            console.log("store bean got");
+            updateBean();
+        }
+
+        //Inventory
+        if (choices[0] == "autographExchange") {
+            inventory.beans = (inventory.beans - 1);
+            inventory.items.push("JJAutograph");
             checkInventory();
+            updateBean();
+        }
+        if (choices[0] == "hoganBeanEncounter"){
+            inventory.beans = (inventory.beans - 1);
+            inventory.items.push("HoganStache")
+            checkInventory();
+            updateBean();
         }
     }
 }
 
-function checkInventory(){
+//Update functions
+function checkInventory() {
     graphicInventory.innerHTML = (inventory.items);
+}
+
+function updateBean() {
+    beanCounter.innerHTML = (inventory.beans);
+    console.log("current beans: " + inventory.beans);
 }
 
 start.addEventListener("click", function () {
     createStory(story.prolog.text);
 });
+
+if(inventory.beans <= 0){
+    inventory.beans != 0;
+}
