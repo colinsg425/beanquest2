@@ -240,12 +240,14 @@ var story = {
         “Hey Brotherrrr!” he exclaims
         "Oh Brother... can't you see i'm walkin here" you reply
         "Listen brother, can you spare a little something?"`,
-        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`], ["bag", "Give brown bag"]],
+        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
     },
+    // ["bag", "Give brown bag"]
 
     getLost: {
         text: `You walk past him`,
-        options: [["giveBean", `Give beans`], ["bag", "Give brown bag"]],
+        options: [["giveBean", `Give beans`]],
+        // ["bag", "Give brown bag"]
     },
 
     giveBean: {
@@ -253,14 +255,113 @@ var story = {
         “Thanks brother!” he exclaims before slurping down the whole can in seconds.
     “As a token of gratitude, I want you to have this” he grabs onto his now bean stained mustache and glasses, rips them off his face, and places them in your hands.
         (-1 beans, +1 bean stained mustache, +1 sunglasses)`,
-        options: [["getLost", `Get lost, meat bag`], ["bag", "Give brown bag"], ["hoganBeanEncounter", "empty"]],
+        options: [["getLost", `Get lost, meat bag`], ["hoganBeanEncounter", "empty"]],
+        // ["bag", "Give brown bag"]
     },
 
-    bag: {
-        text: `He looks inside the bag, and a sinister grin comes across his face, “I think I know what to do with this, brother…” he exclaims as he runs down the street excitedly`,
-        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
+    // bag: {
+    //     text: `He looks inside the bag, and a sinister grin comes across his face, “I think I know what to do with this, brother…” he exclaims as he runs down the street excitedly`,
+    //     options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
+    // },
+
+    //Mr. Bean
+    mrbean: {
+        text: `You approach Mr. Bean…
+        “Excuse me, but are you Mr. Bean?”
+        “Mayhaps” he replies`,
+        options: [["question", `Ask Mr. Bean a question`], ["people", "Leave"]],
+    },
+    
+    question: {
+        text: `“So, how’s the weather?” you ask him, nervously.
+        “It’s fine, I guess, there aren’t any clouds in the sky and the sun's out.”
+    As soon as he finishes talking a bolt of lightning strikes the ground to your left about four feet away.	
+    Upon further inspection, in the same spot the lightning struck, you see a can of Heinz Beans…
+    “Ewwww!” you and Mr. Bean yell in unison, as you kick the can away.`,
+    options: [["joke1", "Tell Mr. Bean a joke"], ["people", "Leave"]],
     },
 
+    joke1: {
+        text: `“How come a man driving a train got struck by lightning?” you ask Mr. Bean
+        “Why?” He asks suspiciously.
+        “He was a good conductor.” You deliver the punchline excitedly.
+        “Hey, that’s pretty good, you could be a comedian!”
+        “You really think so?”
+        “Yes, and here’s some payment.” He hands you a can of beans.
+        (+1 beans)`,
+        options: [["joke2", `Tell him another joke.`], [true, "empty"]],
+    },
+    
+    joke2: {
+        text: `“A horse walks into a bar and the bartender says, "Why the long face?" And the horse says, "I'm finally realizing that my alcoholism is driving my family apart."
+…
+“Wow…” Mr. Bean pauses
+
+“That's deep” he says concerningly
+
+“You…You ok?”
+
+“No” you say “You see my life is in shambles…”
+
+You decide to leave it at that`,
+options: [["joke3",`Tell him another joke.`]],
+    },
+
+    joke3: {
+        text: `“Why can’t a bicycle stand on its own? It’s too tired”
+        “Haha,” he chuckles trying to hide a growing anger, “I think that’s enough, you already got the beans.”`,
+        options: [["defuse", "Defuse the situation"]],
+    },
+
+    stare: {
+        text: `“You stare deep into his eyes. An unsettling breeze blows between the two of you`,
+        options: [["defuse", "Defuse the situation"]],
+    },
+
+    defuse: {
+        text: `“Woah woah woah! I’m sorry, just…just put that away, and we can walk away and nobody gets hurt.” You try to remain calm but there is clearly fear in your voice.
+        “Alright, alright,” Mr. Bean calms down and puts the knife away, “We’ll just go our separate ways.” He slowly walks away backward.
+        You do the same…`,
+        options: [["joke4", "Tell another joke"], ["people", "Leave"]],
+    },
+
+    joke4:{
+        text: `“Two whales walk into a bar. One of them is like,’hmhmhnnnngnbrmuh’ And the other one is like, ‘Man, Steve, go home. You are drunk!’”
+        “Alright, I’ve had enough!” Mr. Bean yells as he pulls out a knife.`,
+        options: [["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
+    },
+
+    fight:{
+        text: `You decide to try and fight the BEAN…you go to throw a punch, but he stabs you in the chest, pulls you in and stabs you two more times and walks away…
+        A light gets closer and closer, before suddenly…nothing…`,
+    },
+
+    run: {
+        text: `You turn to try and run as Mr. Bean gives chase. As you try to outrun him, you trip, falling to the floor. You see Mr. Bean catching up to you, he crutches down and stabs you three times in the chest. As he stands up and walks away, you see a light getting closer and closer…
+
+        “Good Morning…” you hear a loud voice, proving you aren’t dead yet…`,
+        options: [["embrace", "Embrace Death"], ["wake", "Wake up"]],
+    },
+
+    embrace: {
+        text: `You decide not to wake up and accept the abyss as your new home…`,
+    },
+
+    wake: {
+        text: `You feel a cold shiver come over you as the light in front of you becomes larger and larger. Eventually your eyes open and you’re lying in a hospital bed. There’s a magazine on the bedside table…`,
+        options: [["magazine", "Read the magazine"]],
+    },
+
+    magazine: {
+        text: `You pickup the magazine and read the cover.
+        “Kanye West to do performance to advertise Mr. Bean’s revitalization of the abandoned Chestnut Hill Bush’sⓇ Baked Beans factory!”
+        With a fiery rage, you get out of the bed and exit the hospital. You know what you must do…`,
+        options: [["demo", "Leave"]],
+    },
+
+    demo: {
+        text: `Thank you for playing the demo of Bean Quest 2!`
+    }
 };
 
 function createButton(btnText, choice) {
