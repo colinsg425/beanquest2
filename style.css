@@ -1,0 +1,16 @@
+body{
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+#begin{
+    display: inline-block;
+    color: white;
+    background-color: black;
+    padding: 2%;
+}
+
+#playPlace{
+    background-color: beige;
+    color: black;
+}

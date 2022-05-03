@@ -4,6 +4,7 @@ var playerChoices = ["prolog"];
 var start = document.getElementById("begin");
 var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
+var resetBtn = document.getElementById("resetBtn");
 var beanCounter = document.getElementById("beanCounter");
 var graphicInventory = document.getElementById("inventory")
 var inventory = { items: [], beans: 0 };
@@ -14,10 +15,11 @@ var story = {
     prolog: {
         text: `The year is the far distant future year of 2012. The Great Bean-pression of 1932 led to a great decline in bean sale and production that has yet to be resolved, despite countless attempts from government powers. This led President Hoover to sign an act of Bean repression. The effects of this are shown as beans now have more economical power than the dollar.
             You are a lonesome plumber, living a peaceful life, left to you and your thoughts alone, and you know nothing of violence, your brother on the other hand has realized the power of violence. You look up to him and thrive to understand and grasp the very concept of the power he wields. You've attempted several times but failed constantly. Numerous times have you tried to rob the elderly lady in apartment room 107, but in your valiant efforts you end up giving her all of your belongings. You continue to work…`,
-        options: [["ditch", "Ditch the Job"], ["knock", "Knock on Door"]]
+        options: [["ditch", "Ditch the job"], ["knock", "Knock on door"]]
     },
     ditch: {
         text: `You leave the job site and head to town, avoiding the monotony of your work life.`,
+        options: [["town", "Go to town"]],
     },
 
     knock: {
@@ -45,6 +47,7 @@ var story = {
 
     finish: {
         text: `You pack up, exit out the front door, and head into town...`,
+        options: [["town", "Go to Town"]],
     },
 
     check: {
@@ -130,8 +133,9 @@ var story = {
     //talk to citizens
     people: {
         text: `As you make your way through the town you find many familiar faces walking every which way. Who do you want to talk to?`,
-        options: [["eren", "Eren Krueger"], ["joe", "Joe Rogan"], ["psy", "PSY"], ["kanye", "Kanye West"], ["hogan", "Hulk Hogan (homeless)"], ["mrbean", "Mr. Bean"]],
+        options: [["eren", "Eren Krueger"], ["joe", "Joe Rogan"], ["psy", "PSY"], ["kanye", "Kanye West"], ["hogan", "Hulk Hogan (homeless)"], ["mrbean", "Mr. Bean"], ["town", "Return to town"]],
     },
+
     //Eren Krueger
     eren: {
         text: `As you walk down the street you come across a very rugged and unkempt looking man sitting on a bench, you notice a void space where his leg should be, he is unaffected by your presence.`,
@@ -240,14 +244,12 @@ var story = {
         “Hey Brotherrrr!” he exclaims
         "Oh Brother... can't you see i'm walkin here" you reply
         "Listen brother, can you spare a little something?"`,
-        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
+        options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`], ["people", "Leave"]],
     },
-    // ["bag", "Give brown bag"]
 
     getLost: {
         text: `You walk past him`,
-        options: [["giveBean", `Give beans`]],
-        // ["bag", "Give brown bag"]
+        options: [["people", "Talk to other citizens"], ["town", "Return to town"]],
     },
 
     giveBean: {
@@ -255,7 +257,7 @@ var story = {
         “Thanks brother!” he exclaims before slurping down the whole can in seconds.
     “As a token of gratitude, I want you to have this” he grabs onto his now bean stained mustache and glasses, rips them off his face, and places them in your hands.
         (-1 beans, +1 bean stained mustache, +1 sunglasses)`,
-        options: [["getLost", `Get lost, meat bag`], ["hoganBeanEncounter", "empty"]],
+        options: [["people", "Talk to other citizens"], ["town", "Return to town"], ["hoganBeanEncounter", "empty"]],
         // ["bag", "Give brown bag"]
     },
 
@@ -271,14 +273,14 @@ var story = {
         “Mayhaps” he replies`,
         options: [["question", `Ask Mr. Bean a question`], ["people", "Leave"]],
     },
-    
+
     question: {
         text: `“So, how’s the weather?” you ask him, nervously.
         “It’s fine, I guess, there aren’t any clouds in the sky and the sun's out.”
     As soon as he finishes talking a bolt of lightning strikes the ground to your left about four feet away.	
     Upon further inspection, in the same spot the lightning struck, you see a can of Heinz Beans…
     “Ewwww!” you and Mr. Bean yell in unison, as you kick the can away.`,
-    options: [["joke1", "Tell Mr. Bean a joke"], ["people", "Leave"]],
+        options: [["joke1", "Tell Mr. Bean a joke"], ["people", "Leave"]],
     },
 
     joke1: {
@@ -291,7 +293,7 @@ var story = {
         (+1 beans)`,
         options: [["joke2", `Tell him another joke.`], [true, "empty"]],
     },
-    
+
     joke2: {
         text: `“A horse walks into a bar and the bartender says, "Why the long face?" And the horse says, "I'm finally realizing that my alcoholism is driving my family apart."
 …
@@ -304,7 +306,7 @@ var story = {
 “No” you say “You see my life is in shambles…”
 
 You decide to leave it at that`,
-options: [["joke3",`Tell him another joke.`]],
+        options: [["joke3", `Tell him another joke.`]],
     },
 
     joke3: {
@@ -325,13 +327,13 @@ options: [["joke3",`Tell him another joke.`]],
         options: [["joke4", "Tell another joke"], ["people", "Leave"]],
     },
 
-    joke4:{
+    joke4: {
         text: `“Two whales walk into a bar. One of them is like,’hmhmhnnnngnbrmuh’ And the other one is like, ‘Man, Steve, go home. You are drunk!’”
         “Alright, I’ve had enough!” Mr. Bean yells as he pulls out a knife.`,
         options: [["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
     },
 
-    fight:{
+    fight: {
         text: `You decide to try and fight the BEAN…you go to throw a punch, but he stabs you in the chest, pulls you in and stabs you two more times and walks away…
         A light gets closer and closer, before suddenly…nothing…`,
     },
@@ -416,7 +418,7 @@ function createStory() {
             checkInventory();
             updateBean();
         }
-        if (choices[0] == "hoganBeanEncounter"){
+        if (choices[0] == "hoganBeanEncounter") {
             inventory.beans = (inventory.beans - 1);
             inventory.items.push("HoganStache")
             checkInventory();
@@ -435,10 +437,14 @@ function updateBean() {
     console.log("current beans: " + inventory.beans);
 }
 
+function resetGame(){
+    
+}
+
 start.addEventListener("click", function () {
     createStory(story.prolog.text);
 });
 
-if(inventory.beans <= 0){
+if (inventory.beans <= 0) {
     inventory.beans != 0;
 }
