@@ -296,16 +296,16 @@ var story = {
 
     joke2: {
         text: `“A horse walks into a bar and the bartender says, "Why the long face?" And the horse says, "I'm finally realizing that my alcoholism is driving my family apart."
-…
-“Wow…” Mr. Bean pauses
+        …
+        “Wow…” Mr. Bean pauses
 
-“That's deep” he says concerningly
+        “That's deep” he says concerningly
 
-“You…You ok?”
+        “You…You ok?”
 
-“No” you say “You see my life is in shambles…”
+        “No” you say “You see my life is in shambles…”
 
-You decide to leave it at that`,
+        You decide to leave it at that`,
         options: [["joke3", `Tell him another joke.`]],
     },
 
@@ -358,12 +358,104 @@ You decide to leave it at that`,
         text: `You pickup the magazine and read the cover.
         “Kanye West to do performance to advertise Mr. Bean’s revitalization of the abandoned Chestnut Hill Bush’sⓇ Baked Beans factory!”
         With a fiery rage, you get out of the bed and exit the hospital. You know what you must do…`,
-        options: [["demo", "Leave"]],
+        options: [["town2", "Leave"]],
     },
 
-    demo: {
-        text: `Thank you for playing the demo of Bean Quest 2!`
-    }
+    town2: {
+        text: `You return to the center of town from the hospital, the streets are now empty. All you can see are lights coming from the old Chestnut Hill Bush’sⓇ Baked Beans factory.`,
+        options: [["factory", "Go to the factory"], ["house2", "Go home"]],
+    },
+
+    //Canada
+    house2: {
+        text: `You go to your house to find it empty. The phone rings in the other room`,
+        options: [["phone", "Answer the phone"], ["ignorePhone", "Ignore the phone"]],
+    },
+
+    phone: {
+        text: `	You waddle over to your rotary phone, the ringing almost causes it to fall off the
+        table.
+    
+    “Yello!”
+    
+    “Redmen, we have your brother Lui G. in captivity. He has committed treason against our organization by robbing one of our money laundering stores! If you wish to see him again you must comply with our demands! We have left further instructions in your mailbox. Move swiftly. Sincerely, Canadian terrorists.”
+    
+    *connection terminated*
+    
+    “Oh brother”`,
+        options: [["town3", "Go back to town"]],
+    },
+
+    town3: {
+        text: `You return to town, the streets are now empty. All you can see are lights coming from the old Chestnut Hill Bush’sⓇ Baked Beans factory.`,
+        options: [["factory", "Go to the factory"], ["store2", "Go to the store"]],
+    },
+
+    store2: {
+        text: `You enter the store. It's empty and quite, strange how it was unlocked. You hear a faint sound coming from behind the counter`,
+        options: [["hatch", "Investigate behind the counter"], ["town3", "Leave the store"]],
+    },
+
+    hatch: {
+        text: `You check over the counter and see a hatch slightly ajar. As you approach the hatch, the noise gets louder...`,
+        options: [["enterHatch", "Enter the hatch"], ["town3", "Leave the store"]],
+    },
+
+    enterHatch: {
+        text: `As you approach the hatch, you can hear voices coming from inside.
+
+        You then open the hatch, the voices grow louder. Goin down into the hatch you begin to walk forward down a hallway with three doors.`,
+        options: [["leftDoor", "Enter the left door"], ["rightDoor", "Enter the right door"], ["middleDoor", "Enter the middle door"]],
+    },
+
+    leftDoor: {
+        text: `As you reach the end of the hallway, you peek inside the door to your left and see a room with walls lined with guns… this is the armory you think to  yourself. You begin to hear talking that is emitting from a radio in the corner. Listening in you begin to hear Joe Rogan podcast.
+
+        “Hey guys it's me Joe Rogan and I'm joined here by my friend Jar Jar from Jamaica.”
+        
+        “*Koff koff* yo yo hey-sa good to be back mon”
+        
+        “Listen Jar Jar man it's always good to have you here on the podcast”
+        
+        “I see that you are working on a book called My Struggle. Care to talk about it”
+        
+        “Yes-a as you can tell me-sa was-a born in Wyoming and ten me-sa move to California circa 1849. Me-sa has seen muy muy things in me-sa life. That's wha….. ”
+        
+        The Radio begins to go stale with static.`,
+        options: [["gun", "Check gun"], ["rightDoor", "Enter the room on the right"], ["middleDoor", "Enter the middle door"]],
+    },
+
+    gun: {
+        text: `You walk into the room and pick up one of the guns, ”Why is it sticky?” You think to yourself and set the gun down. You see the maple syrup running out of the barrel gleaming in the light.`,
+        options: [["rightDoor", "Enter the room on the right"], ["middleDoor", "Enter the middle door"]], 
+    },
+
+    rightDoor: {
+        text: `You look inside the room to your right and see your brother, Lui G. beaten and bruised unconscious…these Canadians aren’t as nice as you thought.`,
+        options: [["leftDoor", "Enter the left door"], ["middleDoor", "Enter the middle door"]],
+    },
+
+    middleDoor: {
+        text: `As you approach the door at the end of the hallway, the voices get louder and louder, you can now make out what they are saying in detail.
+        “We decided that the term limit was three!” One shouts.
+        “Well, everyone agrees that I’ve been doing a good job.” He sounds just like the one who runs the store.
+        “When we established this democratic system, we decided that three terms was the most anyone could run for and you’re trying to run for a fourth!” Shouts of agreement are heard among the crowd.
+        In the chaos, someone sees you standing in the back.
+        “Hey! Who are you? What are you doing here, bud?”
+        “Oh brother!” You exclaim.
+        “I’ll give you one chance to leave!”`,
+        options: [["leave", "Leave the hideout"]],
+    },
+
+    leave: {
+        text: `“Ok, I’ll go.” You slowly turn around and walk away, glancing back at your brother.
+        “Oh, brother,” you whisper under your breath.`,
+        options: [["town3", "Enter town"]],
+    },
+
+    // demo: {
+    //     text: `Thank you for playing the demo of Bean Quest 2!`
+    // }
 };
 
 function createButton(btnText, choice) {
@@ -437,8 +529,13 @@ function updateBean() {
     console.log("current beans: " + inventory.beans);
 }
 
-function resetGame(){
-    
+function resetGame() {
+    location.reload();
+}
+
+function startGame(){
+    start.style.display = "None";
+    textArea.style.display = 'inline-block';
 }
 
 start.addEventListener("click", function () {
