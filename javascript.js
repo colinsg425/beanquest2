@@ -102,7 +102,7 @@ var story = {
     shop: {
         text: `You walk into the general store. Entering the store you see an American flag spray painted over a Canadian flag.
         “Heelloooo boody” the cashier states, you can clearly tell that he is Canadian, trying desperately to mask his accent.`,
-        options: [["pie", "Purchase Pie"], ["magazine", "Purchase Magazine"], ["purcahseBeans", "Purcahse Beans"], ["sell", "Sell"], ["town", "Go Back to Town"]],
+        options: [["pie", "Purchase Pie"], ["purchaseMagazine", "Purchase Magazine"], ["purcahseBeans", "Purcahse Beans"], ["sell", "Sell"], ["town", "Go Back to Town"]],
     },
 
     pie: {
@@ -112,7 +112,7 @@ var story = {
         options: [["sell", "Sell"], ["town", "Go Back to Town"]],
     },
 
-    magazine: {
+    purchaseMagazine: {
         text: `You open up the magazine, learning from it, you are entranced by what it teaches, learning of fighting and combat, all its variations, applications, and styles. Quickly you rush it over to the counter…
         “I need this!” You shout, slamming the magazine on the counter.
         “Okay buddy, one Detroit Urban Survival Training Magazine, by Dale Brown, coming right up!”
@@ -222,7 +222,7 @@ var story = {
     },
 
     showPsy: {
-        test: `“No.”
+        text: `“No.”
         "Listen to this..."
         You pull out your phone and show Kanye the video for “Gangnam Style”...
         "Man, forget Nickelback, I'm getting PSY! Take these beans as thanks!" He exclaims.
@@ -306,13 +306,19 @@ var story = {
         “No” you say “You see my life is in shambles…”
 
         You decide to leave it at that`,
-        options: [["joke3", `Tell him another joke.`]],
+        options: [["joke3", `Tell him another joke.`], ["people", "Talk to other citizens"]],
     },
 
     joke3: {
         text: `“Why can’t a bicycle stand on its own? It’s too tired”
         “Haha,” he chuckles trying to hide a growing anger, “I think that’s enough, you already got the beans.”`,
-        options: [["defuse", "Defuse the situation"]],
+        options: [["joke4", "Tell him another joke"], ["people", "Talk to other citizens"]],
+    },
+
+    joke4: {
+        text: `“Two whales walk into a bar. One of them is like,’hmhmhnnnngnbrmuh’ And the other one is like, ‘Man, Steve, go home. You are drunk!’”
+        “Alright, I’ve had enough!” Mr. Bean yells as he pulls out a knife.`,
+        options: [["defuse", "Defuse the situation"], ["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
     },
 
     stare: {
@@ -325,12 +331,6 @@ var story = {
         “Alright, alright,” Mr. Bean calms down and puts the knife away, “We’ll just go our separate ways.” He slowly walks away backward.
         You do the same…`,
         options: [["joke4", "Tell another joke"], ["people", "Leave"]],
-    },
-
-    joke4: {
-        text: `“Two whales walk into a bar. One of them is like,’hmhmhnnnngnbrmuh’ And the other one is like, ‘Man, Steve, go home. You are drunk!’”
-        “Alright, I’ve had enough!” Mr. Bean yells as he pulls out a knife.`,
-        options: [["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
     },
 
     fight: {
@@ -376,13 +376,13 @@ var story = {
         text: `	You waddle over to your rotary phone, the ringing almost causes it to fall off the
         table.
     
-    “Yello!”
-    
-    “Redmen, we have your brother Lui G. in captivity. He has committed treason against our organization by robbing one of our money laundering stores! If you wish to see him again you must comply with our demands! We have left further instructions in your mailbox. Move swiftly. Sincerely, Canadian terrorists.”
-    
-    *connection terminated*
-    
-    “Oh brother”`,
+        “Yello!”
+        
+        “Redmen, we have your brother Lui G. in captivity. He has committed treason against our organization by robbing one of our money laundering stores! If you wish to see him again you must comply with our demands! We have left further instructions in your mailbox. Move swiftly. Sincerely, Canadian terrorists.”
+        
+        *connection terminated*
+        
+        “Oh brother”`,
         options: [["town3", "Go back to town"]],
     },
 
