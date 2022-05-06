@@ -46,3 +46,7 @@ button{
 #resetBtn{
     background-color: #ce4343;
 }
+
+#ending{
+    font-size: larger;
+}
