@@ -6,7 +6,8 @@ var textArea = document.getElementById("playPlace");
 var buttonArea = document.getElementById("buttons");
 var resetBtn = document.getElementById("resetBtn");
 var beanCounter = document.getElementById("beanCounter");
-var graphicInventory = document.getElementById("inventory")
+var graphicInventory = document.getElementById("inventory");
+var endingType = document.getElementById("ending");
 var inventory = { items: [], beans: 0 };
 
 num = 1;
@@ -63,6 +64,7 @@ var story = {
     //lake ending
     lake: {
         text: "You decide to take the rest of the day off and go to the lake…\n You spend the day fishing…\n It is peaceful…",
+        options: [["lakeEnding", "empty"]],
     },
 
     //home
@@ -238,7 +240,6 @@ var story = {
     },
 
     // homeless hulk hogan
-
     hogan: {
         text: `You approach a homeless man that looks suspiciously like Hulk Hogan…
         “Hey Brotherrrr!” he exclaims
@@ -258,13 +259,7 @@ var story = {
     “As a token of gratitude, I want you to have this” he grabs onto his now bean stained mustache and glasses, rips them off his face, and places them in your hands.
         (-1 beans, +1 bean stained mustache, +1 sunglasses)`,
         options: [["people", "Talk to other citizens"], ["town", "Return to town"], ["hoganBeanEncounter", "empty"]],
-        // ["bag", "Give brown bag"]
     },
-
-    // bag: {
-    //     text: `He looks inside the bag, and a sinister grin comes across his face, “I think I know what to do with this, brother…” he exclaims as he runs down the street excitedly`,
-    //     options: [["getLost", `Get lost, meat bag`], ["giveBean", `Give beans`]],
-    // },
 
     //Mr. Bean
     mrbean: {
@@ -321,21 +316,22 @@ var story = {
         options: [["defuse", "Defuse the situation"], ["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
     },
 
-    stare: {
-        text: `“You stare deep into his eyes. An unsettling breeze blows between the two of you`,
-        options: [["defuse", "Defuse the situation"]],
-    },
-
     defuse: {
         text: `“Woah woah woah! I’m sorry, just…just put that away, and we can walk away and nobody gets hurt.” You try to remain calm but there is clearly fear in your voice.
         “Alright, alright,” Mr. Bean calms down and puts the knife away, “We’ll just go our separate ways.” He slowly walks away backward.
         You do the same…`,
-        options: [["joke4", "Tell another joke"], ["people", "Leave"]],
+        options: [["joke5", "Tell another joke"], ["people", "Leave"]],
+    },
+
+    joke5: {
+        text: `"A ham sandwich walks into a bar and orders a beer. The bartender says 'We don't serve food here!'" "Alright!" He yells, pulling his knife back out and charging at you...`,
+        options: [["fight", "Try to fight Mr. Bean"], ["run", "Run away"]],
     },
 
     fight: {
         text: `You decide to try and fight the BEAN…you go to throw a punch, but he stabs you in the chest, pulls you in and stabs you two more times and walks away…
         A light gets closer and closer, before suddenly…nothing…`,
+        options: [["deathEnding", "empty"]],
     },
 
     run: {
@@ -347,6 +343,7 @@ var story = {
 
     embrace: {
         text: `You decide not to wake up and accept the abyss as your new home…`,
+        options: [["deathEnding", "empty"]],
     },
 
     wake: {
@@ -364,6 +361,73 @@ var story = {
     town2: {
         text: `You return to the center of town from the hospital, the streets are now empty. All you can see are lights coming from the old Chestnut Hill Bush’sⓇ Baked Beans factory.`,
         options: [["factory", "Go to the factory"], ["house2", "Go home"]],
+    },
+
+    //Factory
+    factory: {
+        text: `You begin on your way to the Chestnut Hill Bush’sⓇ Baked Beans factory…
+        Upon reaching the silver gates, you hear the muffled sound of “Runaway” being performed by Kanye. You open the gates and walk towards the door. 
+        You arrive at the back of a massive crowd as the music fades away and Mr. Bean begins an announcement, “Hello to all who have come, I would like to thank you for all coming, and thank Kanye West for performing at this beantacular bean factory bonanza! With the reopening of this factory we will officially put an end to this bean-pression and recover from the issues it has caused.” He gestures to a lever to his left, “when this lever is pulled, the factory will officially be turned back on and producing beans at speeds we’ve never seen before.” He flips the lever and loud noises begin to come out of the factory as it comes to life. “Let a new age of peace be upon us!” He exclaims, walking into the factory as the crowd erupts into applause and cheering as Kanye begins his next set.`,
+        options: [["followBean", "Follow Mr. Bean"]],
+    },
+
+    follow: {
+        text: `You follow Mr. Bean inside the factory and you see what’s really happening…you see beans, not being baked or fried, but created and artificially at that…
+        “Liar!” You shout at Mr. Bean, “you’re making fake beans, you’re fooling all these people!”
+        “My boy,” he says, turning around and walking down some steps slowly, ”it appears you are alive and well, and it also appears that the beans are spilled”
+        
+        “You're damn right, I know your secret now!” you shout with anger and confidence.
+        
+        “Well, yes and no,” he says, cleaning up a puddle of beans that have spilled on the floor. “Anyhow, the main point being is that you are alive when you should be dead.” he says this time as he pulls out a knife.
+        “Unfortunately, I must finish my mistake.” he says as he begins to charge at you.`,
+        options: [["attack1", "Attack"], ["dodge1", "Dodge"]],
+    },
+
+    //Attack
+    attack1: {
+        text: `As he gets close you throw a punch… You miss, but manage to move his arm away at the last second…He looks you in the eyes, remaining calm, but holding back a building rage. He charges at you again.`,
+        options: [["attack2", "Attack"], ["dodge2", "Dodge"]],
+    },
+
+    attack2: {
+        text: `Your punch is thrown too early and you fall to the ground, but Mr. Bean misses and trips over you…“Alright!” He shouts, getting up off the floor, “I’ve just about had it with you!” He charges at you again, faster than before, with a burning rage in his eyes…`,
+        options: [["attack3", "Attack"], ["dodge3", "Dodge"]],
+    },
+
+    attack3: {
+        text: `You hit his tie, which flies into his face, causing him to miss you…Mr. Bean quickly swings back the other direction…`,
+        options: [["attack4", "Attack"], ["dodge4", "Dodge"]],
+    },
+
+    attack4: {
+        text: `You manage to hit him in the chest, softly, but enough to distract him and push him to a wall…`,
+        options: [["revengeEnding", "Contine"]],
+    },
+
+    //Dodge
+    dodge1: {
+        text: `You move to the side, dodging Mr. Bean’s knife…He looks you in the eyes, remaining calm, but holding back a building rage. He charges at you again.`,
+        options: [["attack2", "Attack"], ["dodge2", "Dodge"]],
+    },
+
+    dodge2: {
+        text: `You crouch out of the way of Mr. Bean’s knife and shove him to the floor…“Alright!” He shouts, getting up off the floor, “I’ve just about had it with you!” He charges at you again, faster than before, with a burning rage in his eyes…`,
+        options: [["attack3", "Attack"], ["dodge3", "Dodge"]],
+    },
+
+    dodge3: {
+        text: `You move to the left quickly, as Mr. Bean thrusts the knife past you, narrowly missing your chest…Mr. Bean quickly swings back the other direction…`,
+        options: [["attack4", "Attack"], ["dodge4", "Dodge"]],
+    },
+
+    dodge4: {
+        text: `You lean back as the knife narrowly misses your throat. You push Mr. Bean into a wall…`,
+        options: [["revengeEnding", "Contine"]],
+    },
+
+    revengeEnding: {
+        text: `As Mr. Bean hits the wall, the knife falls out of his hand. You quickly grab it and slash a rope nearby. Mr. Bean tries to run at you again, but before he can move, he gets crushed by a pallet of bean cans being moved to a conveyor belt.`,
+        options: [["revengeEnding", "empty"]],
     },
 
     //Canada
@@ -516,6 +580,17 @@ function createStory() {
             checkInventory();
             updateBean();
         }
+
+        //Endings
+        if (choices[0] == "lakeEnding"){
+            endingType.innerHTML = ("Fishing Ending");
+        }
+        if (choices[0] == "deathEnding"){
+            endingType.innerHTML = ("You Died");
+        }
+        if(choices[0] == "revengeEnding"){
+            endingType.innerHTML = ("Revenge Ending");
+        }
     }
 }
 
@@ -541,7 +616,3 @@ function startGame(){
 start.addEventListener("click", function () {
     createStory(story.prolog.text);
 });
-
-if (inventory.beans <= 0) {
-    inventory.beans != 0;
-}

@@ -5,7 +5,7 @@
     font-size: 1.50vw;
 }
 
-h1{
+h1{ 
     color: black;
 }
 
@@ -45,4 +45,8 @@ button{
 
 #resetBtn{
     background-color: #ce4343;
+}
+
+#ending{
+    font-size: larger;
 }
