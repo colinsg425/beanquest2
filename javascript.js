@@ -371,7 +371,7 @@ var story = {
         options: [["followBean", "Follow Mr. Bean"]],
     },
 
-    follow: {
+    followBean: {
         text: `You follow Mr. Bean inside the factory and you see what’s really happening…you see beans, not being baked or fried, but created and artificially at that…
         “Liar!” You shout at Mr. Bean, “you’re making fake beans, you’re fooling all these people!”
         “My boy,” he says, turning around and walking down some steps slowly, ”it appears you are alive and well, and it also appears that the beans are spilled”
@@ -516,10 +516,6 @@ var story = {
         “Oh, brother,” you whisper under your breath.`,
         options: [["town3", "Enter town"]],
     },
-
-    // demo: {
-    //     text: `Thank you for playing the demo of Bean Quest 2!`
-    // }
 };
 
 function createButton(btnText, choice) {
